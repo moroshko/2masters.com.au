@@ -118,9 +118,10 @@ export default function Header({ pageTitle, pageDescription }: Props) {
         >
           <Image
             src="/images/header-banner.png"
-            alt="2 Masters banner"
+            alt="2 Masters, phone: 0395155327, email: info@2masters.com.au"
             width={960}
             height={256}
+            priority
           />
         </div>
       </header>

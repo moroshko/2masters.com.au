@@ -1,0 +1,55 @@
+.workOfMouthContainer {
+  display: flex;
+}
+.workOfMouthText {
+  margin: 0;
+}
+.wordOfMouthImage {
+  flex-shrink: 0;
+}
+.imagesContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  grid-column-gap: 20px;
+  margin-top: 32px;
+}
+.pictureContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@media (max-width: 767px) {
+  .workOfMouthContainer {
+    flex-direction: column;
+  }
+  .wordOfMouthImage {
+    margin-top: 24px;
+    text-align: center;
+  }
+  .imagesContainer {
+    grid-row-gap: 32px;
+  }
+  .australianOwned {
+    grid-column: 1/3;
+    text-align: center;
+  }
+}
+@media (min-width: 768px) {
+  .workOfMouthContainer {
+    margin-bottom: -64px;
+  }
+  .wordOfMouthImage {
+    margin-left: 40px;
+  }
+  .imagesContainer {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+  }
+  .australianOwned {
+    display: grid;
+    place-items: center;
+    margin-left: auto;
+    height: 296px;
+  }
+}

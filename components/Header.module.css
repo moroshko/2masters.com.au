@@ -57,6 +57,9 @@
   text-align: center;
   padding: 16px 0;
 }
+.nav {
+  z-index: 1;
+}
 .navList {
   margin: 0 auto;
   padding: 0;
@@ -87,7 +90,6 @@
     background-color: white;
     visibility: hidden;
     padding: 16px 20px;
-    z-index: 1;
   }
   .navOpen {
     visibility: visible;
