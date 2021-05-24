@@ -9,14 +9,14 @@ function WhyUs() {
 
   return (
     <main id="main">
-      <H1>Why us</H1>
-      <H2>About us</H2>
+      <H1>Why Us</H1>
+      <H2>About Us</H2>
       <p>
         2 Masters is a small business servicing all suburbs of Melbourne.
         Founded in 2008 by Lev and Daniel, the business has steadily grown to a
         solid team of 5 professionals; but the name 2 Masters remains!
       </p>
-      <H2>The 2 Masters difference</H2>
+      <H2>The 2 Masters Difference</H2>
       <div className={styles.workOfMouthContainer}>
         <p className="margin-0">
           {`Most of our advertising is done through referrals and previous satisfied
@@ -49,7 +49,7 @@ function WhyUs() {
         </List.Item>
         <List.Item>Strive to be punctual to all appointments</List.Item>
       </List>
-      <H2>Our guarantee</H2>
+      <H2>Our Guarantee</H2>
       <p>
         We pride ourselves on our superior quality of workmanship and service.
         All our installations come with a 6 year warranty and where necessary,
@@ -88,7 +88,7 @@ function WhyUs() {
   );
 }
 
-WhyUs.pageTitle = "Why us";
+WhyUs.pageTitle = "Why Us";
 WhyUs.pageDescription =
   "Most of our business is generated through referrals and previous satisfied customers.";
 

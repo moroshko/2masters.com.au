@@ -26,17 +26,17 @@ function Heating() {
         </div>
         <div>
           <Image
-            src="/images/heating/fireplace.jpg"
+            src="/images/heating.jpg"
             alt="Couple comfortably sitting next to a fireplace"
             width={400}
             height={265}
           />
         </div>
       </div>
-      <div className={styles.heaterBrands}>
+      <div className={styles.brandsContainer}>
         <div className={styles.brand}>
           <Image
-            src="/images/heating/panasonic.png"
+            src="/images/brands/panasonic.png"
             alt="Panasonic logo"
             width={140}
             height={21}
@@ -44,7 +44,7 @@ function Heating() {
         </div>
         <div className={styles.brand}>
           <Image
-            src="/images/heating/samsung.png"
+            src="/images/brands/samsung.png"
             alt="Samsung logo"
             width={140}
             height={46}
@@ -52,7 +52,7 @@ function Heating() {
         </div>
         <div className={styles.brand}>
           <Image
-            src="/images/heating/daikin.png"
+            src="/images/brands/daikin.png"
             alt="Daikin logo"
             width={140}
             height={29}
@@ -60,7 +60,7 @@ function Heating() {
         </div>
         <div className={styles.brand}>
           <Image
-            src="/images/heating/lg.png"
+            src="/images/brands/lg.png"
             alt="LG logo"
             width={60}
             height={26}
@@ -68,7 +68,7 @@ function Heating() {
         </div>
         <div className={styles.brand}>
           <Image
-            src="/images/heating/brivis.png"
+            src="/images/brands/brivis.png"
             alt="Brivis logo"
             width={60}
             height={70}
@@ -76,7 +76,7 @@ function Heating() {
         </div>
         <div className={styles.brand}>
           <Image
-            src="/images/heating/braemar.png"
+            src="/images/brands/braemar.png"
             alt="Braemar logo"
             width={100}
             height={41}

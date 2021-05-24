@@ -5,8 +5,8 @@ import List from "../components/List";
 function OurClients() {
   return (
     <main id="main">
-      <H1>Our clients</H1>
-      <H2>General public</H2>
+      <H1>Our Clients</H1>
+      <H2>General Public</H2>
       <p>
         Our continuous commitment to high quality workmanship, excellent
         customer relationships and competitive pricing has ensured our growth
@@ -25,7 +25,7 @@ function OurClients() {
         We work with many reputable builders to provide heating and cooling
         solutions for new houses and multi-unit developments.
       </p>
-      <H2>Real estate</H2>
+      <H2>Real Estate</H2>
       <p>
         We do a lot of work for real estate agencies, ensuring that tenants are
         warm in winter and cool in summer. We have a long standing relationship
@@ -43,7 +43,7 @@ function OurClients() {
   );
 }
 
-OurClients.pageTitle = "Out clients";
+OurClients.pageTitle = "Out Clients";
 OurClients.pageDescription =
   "We work with general public, commercial, building industry and real estate clients.";
 

@@ -13,7 +13,7 @@ const NAV_LINKS = [
     href: "/",
   },
   {
-    text: "Why us",
+    text: "Why Us",
     href: "/why-us",
   },
   {
@@ -29,15 +29,15 @@ const NAV_LINKS = [
     href: "/electrical",
   },
   {
-    text: "Our clients",
+    text: "Our Clients",
     href: "/our-clients",
   },
   {
-    text: "Get a quote",
+    text: "Get a Quote",
     href: "/get-quote",
   },
   {
-    text: "Contact us",
+    text: "Contact Us",
     href: "/contact-us",
   },
 ];
