@@ -1,5 +1,46 @@
+import { useState, useEffect } from "react";
+import cx from "classnames";
 import Head from "next/head";
+import Link from "next/link";
+import Image from "next/image";
+import { useRouter } from "next/router";
 import Splitbee from "./Splitbee";
+import styles from "./Header.module.css";
+
+const NAV_LINKS = [
+  {
+    text: "Home",
+    href: "/",
+  },
+  {
+    text: "Why us",
+    href: "/why-us",
+  },
+  {
+    text: "Heating",
+    href: "/heating",
+  },
+  {
+    text: "Cooling",
+    href: "/cooling",
+  },
+  {
+    text: "Electrical",
+    href: "/electrical",
+  },
+  {
+    text: "Our clients",
+    href: "/our-clients",
+  },
+  {
+    text: "Get a quote",
+    href: "/get-quote",
+  },
+  {
+    text: "Contact us",
+    href: "/contact-us",
+  },
+];
 
 type Props = {
   pageTitle: string;
@@ -7,9 +48,19 @@ type Props = {
 };
 
 export default function Header({ pageTitle, pageDescription }: Props) {
+  const { pathname } = useRouter();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const title = pageTitle
     ? `${pageTitle} - 2 Masters`
     : "2 Masters - Heating, Cooling, Electrical";
+
+  useEffect(() => {
+    document.body.classList.toggle("mobile-menu-open", isMenuOpen);
+  }, [isMenuOpen]);
+
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
 
   return (
     <>
@@ -31,6 +82,76 @@ export default function Header({ pageTitle, pageDescription }: Props) {
         <meta property="og:locale" content="en_AU" />
       </Head>
       <Splitbee />
+      <a className={styles.skipToMainContent} href="#main">
+        Skip to main content
+      </a>
+      <header className={styles.header}>
+        <div className={styles.headerContent}>
+          {isMenuOpen && "Menu"}
+          <button
+            className={styles.menuButton}
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            onClick={() => {
+              setIsMenuOpen((isMenuOpen) => !isMenuOpen);
+            }}
+          >
+            <span
+              className={cx(styles.menuButtonLine, styles.menuButtonLineTop, {
+                [styles.menuButtonLineTopOpen]: isMenuOpen,
+              })}
+            />
+            <span
+              className={cx(
+                styles.menuButtonLine,
+                styles.menuButtonLineBottom,
+                {
+                  [styles.menuButtonLineBottomOpen]: isMenuOpen,
+                }
+              )}
+            />
+          </button>
+        </div>
+        <div
+          className={cx(styles.banner, {
+            [styles.bannerWhenMenuIsOpen]: isMenuOpen,
+          })}
+        >
+          <Image
+            src="/images/header-banner.png"
+            alt="2 Masters banner"
+            width={960}
+            height={256}
+          />
+        </div>
+      </header>
+      <nav
+        className={cx(styles.nav, {
+          [styles.navOpen]: isMenuOpen,
+        })}
+      >
+        <ul className={styles.navList}>
+          {NAV_LINKS.map(({ text, href }) => {
+            const isCurrent = href === pathname;
+
+            return (
+              <li
+                className={cx(styles.navItem, {
+                  [styles.navItemCurrent]: isCurrent,
+                })}
+                key={text}
+              >
+                {isCurrent ? (
+                  <span className={styles.navItemCurrentText}>{text}</span>
+                ) : (
+                  <Link href={href}>
+                    <a className={styles.navItemLink}>{text}</a>
+                  </Link>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
     </>
   );
 }

@@ -1,13 +1,75 @@
+:root {
+  --scale: 1.25;
+  --font-size-0: calc(var(--font-size-1) / var(--scale));
+  --font-size-1: calc(var(--font-size-2) / var(--scale));
+  --font-size-2: 18px;
+  --font-size-3: calc(var(--font-size-2) * var(--scale));
+  --font-size-4: calc(var(--font-size-3) * var(--scale));
+
+  --line-height: 1.625;
+  --line-height-0: calc(var(--font-size-0) * var(--line-height));
+  --line-height-1: calc(var(--font-size-1) * var(--line-height));
+  --line-height-2: calc(var(--font-size-2) * var(--line-height));
+  --line-height-3: calc(var(--font-size-3) * var(--line-height));
+  --line-height-4: calc(var(--font-size-4) * var(--line-height));
+
+  --grey-50: #f8fafc;
+  --grey-100: #f1f5f9;
+  --grey-200: #e2e8f0;
+  --grey-300: #cbd5e1;
+  --grey-400: #94a3b8;
+  --grey-500: #64748b;
+  --grey-600: #475569;
+  --grey-700: #334155;
+  --grey-800: #1e293b;
+  --grey-900: #0f172a;
+
+  --blue-50: #f0f9ff;
+  --blue-100: #e0f2fe;
+  --blue-200: #bae6fd;
+  --blue-300: #7dd3fc;
+  --blue-400: #38bdf8;
+  --blue-500: #0ea5e9;
+  --blue-600: #0284c7;
+  --blue-700: #0369a1;
+  --blue-800: #075985;
+  --blue-900: #0c4a6e;
+}
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-size: var(--font-size-2);
+  line-height: var(--line-height-2);
+  color: var(--grey-900);
 }
 * {
   box-sizing: border-box;
 }
+a {
+  text-decoration: none;
+  color: var(--blue-700);
+}
+a:hover {
+  text-decoration: underline;
+}
 svg {
   display: block;
+}
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+@media (max-width: 959px) {
+  .mobile-menu-open {
+    overflow: hidden;
+  }
+}
+@media (min-width: 960px) {
+  main {
+    padding: 16px 20px;
+  }
 }

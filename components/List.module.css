@@ -1,0 +1,18 @@
+.list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.item {
+  background-image: url(/images/list-item-tick.svg);
+  background-size: 24px 24px;
+  background-position-y: 8px;
+  background-repeat: no-repeat;
+  padding: 8px 0 8px 36px;
+}
+@media (min-width: 960px) {
+  .item {
+    background-position-y: 4px;
+    padding: 4px 0 4px 36px;
+  }
+}

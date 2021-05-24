@@ -1,0 +1,133 @@
+.header {
+  background-color: white;
+  min-height: 56px;
+}
+.skipToMainContent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background-color: var(--white);
+  height: var(--header-height);
+  line-height: var(--header-height);
+  padding: 0 1rem;
+}
+.skipToMainContent:focus {
+  z-index: 2;
+}
+.headerContent {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  background-color: var(--grey-200);
+}
+.menuButton {
+  margin-left: auto;
+  margin-right: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+.menuButtonLine {
+  display: inline-block;
+  width: 22px;
+  height: 1px;
+  background-color: var(--grey-900);
+  transition: transform 0.2s ease-out;
+}
+.menuButtonLineTop {
+  transform: translateY(-4px) rotate(0deg);
+}
+.menuButtonLineTopOpen {
+  transform: translateY(1px) rotate(45deg);
+}
+.menuButtonLineBottom {
+  transform: translateY(4px) rotate(0deg);
+}
+.menuButtonLineBottomOpen {
+  transform: translateY(0) rotate(-45deg);
+}
+.banner {
+  text-align: center;
+  padding: 16px 0;
+}
+.navList {
+  margin: 0 auto;
+  padding: 0;
+  max-width: 960px;
+  list-style-type: none;
+}
+.navItemCurrentText {
+  cursor: default;
+}
+@media (max-width: 959px) {
+  .headerContent {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    padding-left: 20px;
+  }
+  .banner {
+    margin-top: 56px;
+  }
+  .bannerWhenMenuIsOpen {
+    display: none;
+  }
+  .nav {
+    position: fixed;
+    width: 100%;
+    min-height: calc(100% - 56px);
+    background-color: white;
+    visibility: hidden;
+    padding: 16px 20px;
+    z-index: 1;
+  }
+  .navOpen {
+    visibility: visible;
+  }
+  .navItem {
+    padding: 16px 0 16px 40px;
+  }
+  .navItemCurrent {
+    background-image: url(/images/nav-item.svg);
+    background-size: 36px 36px;
+    background-position-y: 12px;
+    background-repeat: no-repeat;
+  }
+}
+@media (min-width: 960px) {
+  .headerContent {
+    display: none;
+  }
+  .nav {
+    position: sticky;
+    top: 0;
+    background-color: var(--grey-200);
+  }
+  .navList {
+    display: flex;
+    align-items: center;
+  }
+  .navItemLink {
+    text-decoration: none;
+    color: inherit;
+  }
+  .navItemLink,
+  .navItemCurrentText {
+    display: inline-block;
+    padding: 16px 20px;
+  }
+  .navItemCurrent,
+  .navItemLink:hover {
+    background-color: var(--grey-700);
+    color: var(--grey-50);
+    text-decoration: none;
+  }
+}
