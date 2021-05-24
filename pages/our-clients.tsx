@@ -2,7 +2,7 @@ import H1 from "../components/H1";
 import H2 from "../components/H2";
 import List from "../components/List";
 
-export default function OurClients() {
+function OurClients() {
   return (
     <main id="main">
       <H1>Our clients</H1>
@@ -42,3 +42,9 @@ export default function OurClients() {
     </main>
   );
 }
+
+OurClients.pageTitle = "Out clients";
+OurClients.pageDescription =
+  "We work with general public, commercial, building industry and real estate clients.";
+
+export default OurClients;

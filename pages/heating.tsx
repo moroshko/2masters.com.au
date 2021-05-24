@@ -3,7 +3,7 @@ import H1 from "../components/H1";
 import List from "../components/List";
 import styles from "../styles/Heating.module.css";
 
-export default function Heating() {
+function Heating() {
   return (
     <main id="main">
       <H1>Heating</H1>
@@ -86,3 +86,9 @@ export default function Heating() {
     </main>
   );
 }
+
+Heating.pageTitle = "Heating";
+Heating.pageDescription =
+  "At 2 Masters, we supply, install, service and repair all types of heaters at competitive prices.";
+
+export default Heating;

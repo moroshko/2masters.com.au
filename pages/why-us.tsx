@@ -4,7 +4,7 @@ import H2 from "../components/H2";
 import List from "../components/List";
 import styles from "../styles/WhyUs.module.css";
 
-export default function WhyUs() {
+function WhyUs() {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -87,3 +87,9 @@ export default function WhyUs() {
     </main>
   );
 }
+
+WhyUs.pageTitle = "Why us";
+WhyUs.pageDescription =
+  "Most of our business is generated through referrals and previous satisfied customers.";
+
+export default WhyUs;

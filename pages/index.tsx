@@ -3,7 +3,7 @@ import H2 from "../components/H2";
 import List from "../components/List";
 import styles from "../styles/Home.module.css";
 
-export default function Home() {
+function Home() {
   return (
     <main id="main">
       <p>
@@ -54,3 +54,8 @@ export default function Home() {
     </main>
   );
 }
+
+Home.pageDescription =
+  "Whether you want to keep cool in summer or warm in…heating and cooling needs at a competitive price.";
+
+export default Home;
