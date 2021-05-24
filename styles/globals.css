@@ -63,6 +63,9 @@ main {
   margin: 0 auto;
   padding: 0 16px;
 }
+.margin-0 {
+  margin: 0;
+}
 @media (max-width: 959px) {
   .mobile-menu-open {
     overflow: hidden;

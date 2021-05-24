@@ -70,6 +70,9 @@
   cursor: default;
 }
 @media (max-width: 959px) {
+  .header {
+    border-bottom: 2px solid var(--grey-300);
+  }
   .headerContent {
     position: fixed;
     top: 0;

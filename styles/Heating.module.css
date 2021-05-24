@@ -1,0 +1,27 @@
+.container {
+  display: grid;
+}
+.heaterBrands {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.brand {
+  margin: 20px;
+}
+@media (max-width: 767px) {
+  .container {
+    grid-row-gap: 16px;
+  }
+}
+@media (min-width: 768px) {
+  .heaterBrands {
+    margin-top: 48px;
+  }
+  .container {
+    grid-template-columns: 1fr 400px;
+    grid-column-gap: 40px;
+  }
+}

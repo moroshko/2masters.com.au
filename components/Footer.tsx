@@ -35,7 +35,11 @@ export default function Footer() {
           owners.
         </p>
         <FacebookProvider appId="2Masters">
-          <Like href="https://www.facebook.com/2Masters" size="large" />
+          <Like
+            href="https://www.facebook.com/2Masters"
+            width={300}
+            size="large"
+          />
         </FacebookProvider>
       </div>
     </footer>

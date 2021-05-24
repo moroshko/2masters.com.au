@@ -1,9 +1,6 @@
 .workOfMouthContainer {
   display: flex;
 }
-.workOfMouthText {
-  margin: 0;
-}
 .wordOfMouthImage {
   flex-shrink: 0;
 }

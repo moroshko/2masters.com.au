@@ -1,4 +1,3 @@
-import cx from "classnames";
 import Image from "next/image";
 import H1 from "../components/H1";
 import H2 from "../components/H2";
@@ -19,7 +18,7 @@ export default function WhyUs() {
       </p>
       <H2>The 2 Masters difference</H2>
       <div className={styles.workOfMouthContainer}>
-        <p className={styles.workOfMouthText}>
+        <p className="margin-0">
           {`Most of our advertising is done through referrals and previous satisfied
         customers – a testament to the high quality service we provide and the
         consistent satisfaction of our clients. We have recently won the Service
