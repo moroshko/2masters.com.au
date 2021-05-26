@@ -4,6 +4,7 @@
 }
 .form {
   max-width: 400px;
+  flex-grow: 1;
 }
 @media (max-width: 767px) {
   .image {
