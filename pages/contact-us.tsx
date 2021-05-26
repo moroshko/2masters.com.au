@@ -134,6 +134,7 @@ function ContactUs() {
             alt="Support person talking to clients"
             width={245}
             height={346}
+            priority
           />
         </div>
       </div>
