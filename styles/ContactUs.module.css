@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+.form {
+  max-width: 400px;
+}
+@media (max-width: 767px) {
+  .image {
+    display: none;
+  }
+}

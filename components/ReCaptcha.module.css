@@ -1,0 +1,22 @@
+.container {
+  position: relative;
+  width: 304px;
+  height: 78px;
+}
+.placeholder {
+  width: 302px;
+  height: 76px;
+  padding-left: 16px;
+  border: 1px solid var(--grey-700);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+.recaptcha {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.recaptchaNotLoaded {
+  opacity: 0;
+}

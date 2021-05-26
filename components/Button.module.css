@@ -1,0 +1,37 @@
+.button {
+  font-size: var(--font-size-2);
+  color: var(--blue-50);
+  background-color: var(--blue-700);
+  border: 0;
+  padding: 12px 24px;
+  border-radius: 4px;
+  position: relative;
+}
+.button:disabled {
+  cursor: not-allowed;
+}
+.button:not(:disabled):hover {
+  background-color: var(--blue-800);
+}
+.contentWhenLoading {
+  opacity: 0;
+}
+.spinner {
+  --size: 1.5rem;
+  position: absolute;
+  top: calc(50% - calc(var(--size) / 2));
+  left: calc(50% - calc(var(--size) / 2));
+  display: block;
+  width: var(--size);
+  height: var(--size);
+  border: calc(var(--size) / 6) solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  border-top-color: var(--white);
+  animation: rotate-spinner 1s linear;
+  animation-iteration-count: infinite;
+}
+@keyframes rotate-spinner {
+  100% {
+    transform: rotate(360deg);
+  }
+}
