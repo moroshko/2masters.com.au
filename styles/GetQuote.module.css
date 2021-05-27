@@ -8,6 +8,7 @@
 }
 .image {
   flex-shrink: 0;
+  margin-left: 64px;
 }
 @media (max-width: 767px) {
   .image {
