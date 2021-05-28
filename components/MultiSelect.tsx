@@ -98,6 +98,20 @@ export default function MultiSelect<ValueType>({
         color: "var(--grey-700)",
       };
     },
+    menuList: (provided) => {
+      return {
+        ...provided,
+        paddingTop: 0,
+        paddingBottom: 0,
+      };
+    },
+    noOptionsMessage: (provided) => {
+      return {
+        ...provided,
+        backgroundColor: "var(--blue-300)",
+        color: "var(--grey-900)",
+      };
+    },
   };
 
   return (
@@ -107,6 +121,7 @@ export default function MultiSelect<ValueType>({
       isDisabled={disabled}
       isMulti={true}
       closeMenuOnSelect={false}
+      noOptionsMessage={() => "No matched options"}
       options={options}
       onChange={(selectedOptions) => {
         onChange(selectedOptions);

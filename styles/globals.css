@@ -90,18 +90,19 @@ form {
   color: var(--red);
   min-height: 32px;
 }
-input {
+.field > input {
   font-family: "Inter", sans-serif;
   font-size: var(--font-size-2);
   height: 48px;
   padding: 0 12px;
   border: 1px solid var(--grey-700);
   border-radius: 4px;
+  appearance: none;
 }
-input:disabled {
+.field > input:disabled {
   background-color: var(--grey-100);
 }
-textarea {
+.field > textarea {
   font-family: "Inter", sans-serif;
   font-size: var(--font-size-2);
   line-height: var(--line-height-2);
@@ -112,8 +113,9 @@ textarea {
   border: 1px solid var(--grey-700);
   border-radius: 4px;
   resize: vertical;
+  appearance: none;
 }
-textarea:disabled {
+.field > textarea:disabled {
   background-color: var(--grey-100);
 }
 @media (max-width: 959px) {
