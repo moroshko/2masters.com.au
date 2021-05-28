@@ -149,7 +149,7 @@ function GetQuote() {
             </div>
             <div className="field field-optional">
               <label htmlFor="requiredServices">Required services</label>
-              <MultiSelect<Service>
+              <MultiSelect
                 id="requiredServices"
                 options={requiredServicesOptions}
                 disabled={mutation.isSuccess}
