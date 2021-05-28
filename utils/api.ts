@@ -16,7 +16,9 @@ export function post<Data>(url: string, data: Data): Promise<any> {
           reject(responseData);
         }
       })
-      .catch(() => {
+      .catch((error) => {
+        console.error(error);
+
         reject({
           submitError: "Something went wrong.",
         });
