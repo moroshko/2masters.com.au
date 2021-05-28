@@ -87,7 +87,7 @@ export default async (
     await sendEmail({
       from: `${name} <${email}>`,
       to:
-        req.headers.host === "2masters.com.au"
+        req.headers.host === "www.2masters.com.au"
           ? "accounts@2masters.com.au"
           : "misha@2masters.com.au",
       subject: "2 Masters Website Contact",
