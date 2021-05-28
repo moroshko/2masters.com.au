@@ -4,7 +4,7 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import Splitbee from "./Splitbee";
+import Splitbee, { trackEvent } from "./Splitbee";
 import styles from "./Header.module.css";
 
 const NAV_LINKS = [
@@ -150,7 +150,14 @@ export default function Header({ pageTitle, pageDescription }: Props) {
                   <span className={styles.navItemCurrentText}>{text}</span>
                 ) : (
                   <Link href={href}>
-                    <a className={styles.navItemLink}>{text}</a>
+                    <a
+                      className={styles.navItemLink}
+                      onClick={() => {
+                        trackEvent(`Nav ${text} link clicked`);
+                      }}
+                    >
+                      {text}
+                    </a>
                   </Link>
                 )}
               </li>

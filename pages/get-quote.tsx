@@ -6,6 +6,7 @@ import H1 from "../components/H1";
 import Button from "../components/Button";
 import MultiSelect, { SelectOption } from "../components/MultiSelect";
 import ReCaptcha, { ReCAPTCHA } from "../components/ReCaptcha";
+import { trackEvent } from "../components/Splitbee";
 import { post } from "../utils/api";
 import {
   SuccessResponse,
@@ -55,6 +56,9 @@ function GetQuote() {
     setSubmitError(null);
 
     mutation.mutate(data, {
+      onSuccess: () => {
+        trackEvent("Get a Quote form submitted");
+      },
       onError: ({ fieldErrors, submitError }) => {
         fieldErrors?.forEach(({ name, error }) => {
           setError(name, { type: "manual", message: error });

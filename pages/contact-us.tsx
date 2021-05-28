@@ -6,6 +6,7 @@ import H1 from "../components/H1";
 import H2 from "../components/H2";
 import Button from "../components/Button";
 import ReCaptcha, { ReCAPTCHA } from "../components/ReCaptcha";
+import { trackEvent } from "../components/Splitbee";
 import { post } from "../utils/api";
 import { SuccessResponse, ErrorResponse, FormValues } from "./api/contact-us";
 import {
@@ -37,6 +38,9 @@ function ContactUs() {
     setSubmitError(null);
 
     mutation.mutate(data, {
+      onSuccess: () => {
+        trackEvent("Contact Us form submitted");
+      },
       onError: ({ fieldErrors, submitError }) => {
         fieldErrors?.forEach(({ name, error }) => {
           setError(name, { type: "manual", message: error });
