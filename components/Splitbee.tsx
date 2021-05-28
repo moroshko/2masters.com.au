@@ -33,7 +33,7 @@ export type QueueData = {
 const SPLITBEE_SCRIPT_ID = "2masters-splitbee";
 
 function isSplitbeeEnabled() {
-  return window.location.host === "2masters.com.au";
+  return window.location.host === "www.2masters.com.au";
 }
 
 export function trackEvent(eventName: string) {
