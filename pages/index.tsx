@@ -22,27 +22,33 @@ function Home() {
         <List.Item>Plumbing and electrical safety checks</List.Item>
         <List.Item>Scheduled maintenance and service</List.Item>
       </List>
-      <p>
+      <p className={styles.residentialCommercialIntro}>
         We cater to a variety of residential and commercial clients. No job is
         ever too big or too small!
       </p>
-      <H2>Residential</H2>
-      <List>
-        <List.Item>Single and double storey houses</List.Item>
-        <List.Item>Villa units</List.Item>
-        <List.Item>Apartments</List.Item>
-        <List.Item>Body corporate</List.Item>
-      </List>
-      <H2>Commercial</H2>
-      <List>
-        <List.Item>Offices</List.Item>
-        <List.Item>Warehouses</List.Item>
-        <List.Item>Factories</List.Item>
-        <List.Item>Shops</List.Item>
-        <List.Item>Shopping Complexes</List.Item>
-        <List.Item>Schools</List.Item>
-        <List.Item>Community Centres</List.Item>
-      </List>
+      <div className={styles.residentialCommercialContainer}>
+        <div>
+          <H2>Residential</H2>
+          <List>
+            <List.Item>Single and double storey houses</List.Item>
+            <List.Item>Villa units</List.Item>
+            <List.Item>Apartments</List.Item>
+            <List.Item>Body corporates</List.Item>
+          </List>
+        </div>
+        <div>
+          <H2>Commercial</H2>
+          <List>
+            <List.Item>Offices</List.Item>
+            <List.Item>Warehouses</List.Item>
+            <List.Item>Factories</List.Item>
+            <List.Item>Shops</List.Item>
+            <List.Item>Shopping Complexes</List.Item>
+            <List.Item>Schools</List.Item>
+            <List.Item>Community Centres</List.Item>
+          </List>
+        </div>
+      </div>
       <div className={styles.image} aria-hidden="true">
         <Image
           src="/images/home.jpg"

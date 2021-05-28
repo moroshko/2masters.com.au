@@ -15,7 +15,7 @@ function OurClients() {
       </p>
       <H2>Commercial</H2>
       <p>
-        Many organisations sign maintenance plans with us for a year ahead to
+        Many organisations sign up maintenance plans with us for a year ahead to
         ensure that programmed servicing is performed at regular intervals.
         Regularly serviced air conditioners work more efficiently and provide
         air that is cleaner.
@@ -38,6 +38,7 @@ function OurClients() {
         <List.Item>Hodges Real Estate</List.Item>
         <List.Item>Stockdale and Leggo</List.Item>
         <List.Item>RT Edgar</List.Item>
+        <List.Item>Belle Property</List.Item>
       </List>
     </main>
   );
