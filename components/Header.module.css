@@ -131,7 +131,7 @@
   }
   .navItemCurrent,
   .navItemLink:hover {
-    background-color: var(--grey-700);
+    background-color: var(--grey-600);
     color: var(--grey-50);
     text-decoration: none;
   }

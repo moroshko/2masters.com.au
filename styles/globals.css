@@ -41,8 +41,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: var(--font-size-2);
   line-height: var(--line-height-2);
   color: var(--grey-900);
@@ -77,6 +76,9 @@ form {
   flex-direction: column;
   min-width: 0;
 }
+.field-optional {
+  margin-bottom: 32px;
+}
 .field > label {
   align-self: flex-start;
   font-weight: bold;
@@ -89,6 +91,7 @@ form {
   min-height: 32px;
 }
 input {
+  font-family: "Inter", sans-serif;
   font-size: var(--font-size-2);
   height: 48px;
   padding: 0 12px;
@@ -99,6 +102,7 @@ input:disabled {
   background-color: var(--grey-100);
 }
 textarea {
+  font-family: "Inter", sans-serif;
   font-size: var(--font-size-2);
   line-height: var(--line-height-2);
   font-family: inherit;

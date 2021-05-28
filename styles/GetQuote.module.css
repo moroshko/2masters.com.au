@@ -3,6 +3,7 @@
   justify-content: space-between;
 }
 .form {
+  margin-top: 32px;
   max-width: 400px;
   flex-grow: 1;
 }

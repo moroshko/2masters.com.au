@@ -28,16 +28,16 @@ function ContactUs() {
       token: null,
     },
   });
-  const [submitError, setSubmitError] = useState<string>();
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const recaptchaRef = useRef<ReCAPTCHA>();
   const mutation = useMutation<SuccessResponse, ErrorResponse, FormValues>(
     (data) => post("/api/contact-us", data)
   );
   const onSubmit = handleSubmit((data) => {
+    setSubmitError(null);
+
     mutation.mutate(data, {
       onError: ({ fieldErrors, submitError }) => {
-        console.log("error", { fieldErrors, submitError });
-
         fieldErrors?.forEach(({ name, error }) => {
           setError(name, { type: "manual", message: error });
         });

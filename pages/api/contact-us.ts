@@ -94,7 +94,7 @@ export default async (
       text: message,
     });
   } catch (error) {
-    return res.status(400).send({ submitError: error.message });
+    return res.status(400).json({ submitError: error.message });
   }
 
   // Add record to Airtable
@@ -108,6 +108,6 @@ export default async (
 
     res.status(200).json({ message: "Thanks! You'll hear from us soon." });
   } catch (error) {
-    return res.status(400).send({ submitError: error.message });
+    return res.status(400).json({ submitError: error.message });
   }
 };
