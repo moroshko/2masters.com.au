@@ -81,7 +81,7 @@ form {
 }
 .field > label {
   align-self: flex-start;
-  font-weight: bold;
+  font-weight: 600;
   color: var(--grey-700);
 }
 .field-error {
