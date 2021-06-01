@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { useMutation } from "react-query";
 import { useForm } from "react-hook-form";
+import ReCAPTCHA from "react-google-recaptcha";
 import Image from "next/image";
 import H1 from "../components/H1";
 import H2 from "../components/H2";
 import Button from "../components/Button";
-import ReCaptcha, { ReCAPTCHA } from "../components/ReCaptcha";
+import ReCaptcha from "../components/ReCaptcha";
 import { trackEvent } from "../components/Splitbee";
 import { post } from "../utils/api";
 import { SuccessResponse, ErrorResponse, FormValues } from "./api/contact-us";
@@ -30,7 +31,7 @@ function ContactUs() {
     },
   });
   const [submitError, setSubmitError] = useState<string | null>(null);
-  const recaptchaRef = useRef<ReCAPTCHA>();
+  const recaptchaRef = useRef<ReCAPTCHA>(null); // See: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/35572#issuecomment-498242139
   const mutation = useMutation<SuccessResponse, ErrorResponse, FormValues>(
     (data) => post("/api/contact-us", data)
   );
@@ -154,8 +155,6 @@ function ContactUs() {
                   onExpired={() => {
                     setValue("token", null);
                   }}
-                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                  // @ts-ignore
                   ref={recaptchaRef}
                 />
               </div>
