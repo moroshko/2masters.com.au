@@ -38,7 +38,29 @@ export default async (
     return res.status(405).end();
   }
 
-  const { name = "", email = "", message = "", token = null } = req.body;
+  const formValues: FormValues = req.body;
+  const { name = "", email = "", message = "", token = null } = formValues;
+
+  // Verify captcha
+  try {
+    const response = await fetch(
+      `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${token}`,
+      {
+        method: "POST",
+      }
+    );
+    const responseData = await response.json();
+
+    if (!responseData.success) {
+      return res.status(400).json({
+        fieldErrors: [{ name: "token", error: "Invalid token" }],
+      });
+    }
+  } catch (error) {
+    return res.status(400).json({
+      fieldErrors: [{ name: "token", error: "Token verification failed" }],
+    });
+  }
 
   // Server-side validation
   const fieldErrors: FieldError[] = [
@@ -57,29 +79,6 @@ export default async (
 
   if (fieldErrors.length > 0) {
     return res.status(400).json({ fieldErrors });
-  }
-
-  // Verify captcha
-  try {
-    const response = await fetch(
-      `https://www.google.com/recaptcha/api/siteverify?secret=${encodeURIComponent(
-        process.env.RECAPTCHA_SECRET_KEY as string
-      )}&response=${encodeURIComponent(token)}`,
-      {
-        method: "POST",
-      }
-    );
-    const responseData = await response.json();
-
-    if (!responseData.success) {
-      return res.status(400).json({
-        fieldErrors: [{ name: "token", error: "Invalid token" }],
-      });
-    }
-  } catch (error) {
-    return res.status(400).json({
-      fieldErrors: [{ name: "token", error: "Token verification failed" }],
-    });
   }
 
   // Send email using Mailgun
