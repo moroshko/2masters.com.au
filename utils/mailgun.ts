@@ -1,13 +1,11 @@
-import mailgun from "mailgun-js";
+// See: https://documentation.mailgun.com/en/latest/api-intro.html#authentication
+const auth = `${Buffer.from(`api:${process.env.MAILGUN_API_KEY}`).toString(
+  "base64"
+)}`;
 
 const MAILGUN_DOMAIN = "mailgun.2masters.com.au";
 
-const mg = mailgun({
-  apiKey: process.env.MAILGUN_API_KEY as string,
-  domain: MAILGUN_DOMAIN,
-});
-
-type SendEmailParams = {
+type Message = {
   from: string;
   to: string;
   subject: string;
@@ -15,6 +13,13 @@ type SendEmailParams = {
   html?: string;
 };
 
-export function sendEmail({ from, to, subject, text, html }: SendEmailParams) {
-  return mg.messages().send({ from, to, subject, text, html });
+export function sendEmail(message: Message) {
+  // See: https://documentation.mailgun.com/en/latest/api-sending.html#sending
+  return fetch(`https://api.mailgun.net/v3/${MAILGUN_DOMAIN}/messages`, {
+    method: "post",
+    body: new URLSearchParams(message),
+    headers: {
+      Authorization: `Basic ${auth}`,
+    },
+  });
 }
