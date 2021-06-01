@@ -7,6 +7,7 @@ type Props = {
   loading?: boolean;
   children: ReactNode;
 };
+
 export default function Button({
   type = "button",
   loading = false,
