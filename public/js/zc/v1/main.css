@@ -6,3 +6,6 @@ body {
 * {
   box-sizing: border-box;
 }
+article.markdown-body {
+  display: none;
+}
