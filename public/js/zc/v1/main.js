@@ -11,6 +11,7 @@ div.id = "root";
 document.body.append(div);
 
 // Add code below
+//
 function loadScript(src) {
   return new Promise((resolve, reject) => {
     const script = document.createElement("script");
@@ -49,11 +50,13 @@ function App() {
       console.log(`Failed to connect, readyState = ${eventSource.readyState}`);
     };
 
-    eventSource.onmessage = (event) => {
-      console.log(event);
-    };
+    function handleStateMessage(event) {
+      console.log(event, event.data);
+    }
 
+    eventSource.addEventListener("state", handleStateMessage);
     return () => {
+      eventSource.removeEventListener("state", handleStateMessage);
       eventSource.close();
     };
   }, []);
