@@ -10,22 +10,8 @@ const div = document.createElement("div");
 div.id = "root";
 document.body.append(div);
 
-// Add app code
-let script = document.createElement("script");
-script.type = "text/babel";
-script.innerHTML = `
-  function App() {
-    return (
-      <h1>Hello World!</h1>
-    )
-  }
-
-  ReactDOM.render(<App />, document.getElementById("root"));
-`;
-document.body.append(script);
-
 // Add React
-script = document.createElement("script");
+let script = document.createElement("script");
 script.src = "https://unpkg.com/react@17.0.2/umd/react.production.min.js";
 script.crossOrigin = "anonymous";
 document.body.append(script);
@@ -35,8 +21,15 @@ script.src =
   "https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js";
 script.crossOrigin = "anonymous";
 document.body.append(script);
-// Add dataformsjs
+
+// Add app code
 script = document.createElement("script");
-script.src =
-  "https://cdn.jsdelivr.net/npm/dataformsjs@5.9.0/js/react/jsxLoader.min.js";
+script.innerHTML = `
+  const app = React.createElement(
+    "div",
+    "Hello World",
+  );
+
+  ReactDOM.render(app, document.getElementById("root"));
+`;
 document.body.append(script);
