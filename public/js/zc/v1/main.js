@@ -10,6 +10,7 @@ const div = document.createElement("div");
 div.id = "root";
 document.body.append(div);
 
+// Add code below
 function loadScript(src) {
   return new Promise((resolve, reject) => {
     const script = document.createElement("script");
@@ -38,6 +39,16 @@ function App() {
   React.useEffect(() => {
     const eventSource = new EventSource("/events");
 
+    eventSource.onopen = () => {
+      console.log(
+        `Connected successfully, readyState = ${eventSource.readyState}`
+      );
+    };
+
+    eventSource.onerror = () => {
+      console.log(`Failed to connect, readyState = ${eventSource.readyState}`);
+    };
+
     eventSource.onmessage = (event) => {
       console.log(event);
     };
@@ -46,5 +57,5 @@ function App() {
       eventSource.close();
     };
   }, []);
-  return /*#__PURE__*/ React.createElement("p", null, "Hello world!!");
+  return /*#__PURE__*/ React.createElement("p", null, "Hello world");
 }
