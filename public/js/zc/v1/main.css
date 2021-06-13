@@ -1,3 +1,8 @@
-.app {
-  color: red;
+body {
+  margin: 0;
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+* {
+  box-sizing: border-box;
 }
