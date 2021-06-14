@@ -114,6 +114,16 @@ function Switches({ zones }) {
 
     return initialState;
   });
+  console.log(
+    JSON.stringify(
+      {
+        eventSourceState,
+        switches,
+      },
+      null,
+      2
+    )
+  );
   React.useEffect(() => {
     const eventSource = new EventSource("/events");
 
