@@ -1,3 +1,10 @@
+// Add <meta name="viewport" content="width=device-width">
+const meta = document.createElement("meta");
+meta.name = "viewport";
+meta.content = "width=device-width";
+document.head.append(meta);
+
+// Update document title
 document.title = "Zones Controller";
 
 // Delete existing HTML

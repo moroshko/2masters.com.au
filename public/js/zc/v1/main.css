@@ -31,9 +31,8 @@ article.markdown-body {
   border-radius: 16px;
   background-color: #e2e8f0;
   border: 1px solid #94a3b8;
-}
-.switch-button:not(:disabled):hover {
-  background-color: #cbd5e1;
+  appearance: none;
+  user-select: none;
 }
 .switch-button:disabled {
   color: inherit;
@@ -56,9 +55,6 @@ article.markdown-body {
   background-color: #bbf7d0;
   border: 1px solid #4ade80;
 }
-.switch-button-on:not(:disabled):hover {
-  background-color: #86efac;
-}
 .switch-status-on {
   border-top: 1px dashed #4ade80;
 }
@@ -66,9 +62,6 @@ article.markdown-body {
 .switch-button-off {
   background-color: #fecaca;
   border: 1px solid #f87171;
-}
-.switch-button-off:not(:disabled):hover {
-  background-color: #fca5a5;
 }
 .switch-status-off {
   border-top: 1px dashed #f87171;
