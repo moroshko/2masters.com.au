@@ -33,6 +33,7 @@ article.markdown-body {
   border: 1px solid #94a3b8;
   appearance: none;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 .switch-button:disabled {
   color: inherit;
