@@ -134,6 +134,11 @@ function App({ query }) {
             }),
             type: "button",
             disabled: switches[id].status === STATUS.WAITING_FOR_SIGNAL,
+            onClick: () => {
+              fetch(`/switch/${id}/toggle`, {
+                method: "POST",
+              });
+            },
           },
           /*#__PURE__*/ React.createElement(
             "span",
