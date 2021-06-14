@@ -99,6 +99,9 @@ const STATUS = {
 };
 
 function Switches({ zones }) {
+  const [eventSourceState, setEventSourceState] = React.useState(
+    EventSource.CLOSED
+  );
   const [switches, setSwitches] = React.useState(() => {
     const initialState = {};
 
@@ -115,12 +118,14 @@ function Switches({ zones }) {
     const eventSource = new EventSource("/events");
 
     eventSource.onopen = () => {
+      setEventSourceState(eventSource.readyState);
       console.log(
         `Connected successfully, readyState = ${eventSource.readyState}`
       );
     };
 
     eventSource.onerror = () => {
+      setEventSourceState(eventSource.readyState);
       console.log(`Failed to connect, readyState = ${eventSource.readyState}`);
     };
 
@@ -147,6 +152,17 @@ function Switches({ zones }) {
       eventSource.close();
     };
   }, []);
+
+  if (eventSourceState === EventSource.CLOSED) {
+    return /*#__PURE__*/ React.createElement(
+      "p",
+      {
+        className: "error",
+      },
+      "Disconnected"
+    );
+  }
+
   return /*#__PURE__*/ React.createElement(
     "ul",
     {
