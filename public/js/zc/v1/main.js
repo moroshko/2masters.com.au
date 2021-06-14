@@ -34,16 +34,22 @@ const ZONE_KEY_REGEX = /^zone_[1-8]$/;
 
 function validateQuery(query) {
   const keys = Object.keys(query);
-  const zoneKeys = keys.filter((key) => ZONE_KEY_REGEX.test(key));
+  const zones = keys.reduce((acc, key) => {
+    if (ZONE_KEY_REGEX.test(key)) {
+      acc[key] = query[key];
+    }
 
-  if (zoneKeys.length === 0) {
+    return acc;
+  }, {});
+
+  if (Object.keys(zones).length === 0) {
     return {
       error: "Zones are missing.",
     };
   }
 
   return {
-    zoneKeys,
+    zones,
   };
 }
 
@@ -92,13 +98,13 @@ const STATUS = {
   OFF: "OFF",
 };
 
-function Switches({ zoneKeys }) {
+function Switches({ zones }) {
   const [switches, setSwitches] = React.useState(() => {
     const initialState = {};
 
-    for (const key in zoneKeys) {
+    for (const key in zones) {
       initialState[key] = {
-        name: zoneKeys[key],
+        name: zones[key],
         status: STATUS.WAITING_FOR_SIGNAL,
       };
     }
@@ -208,6 +214,6 @@ function App({ queryInfo }) {
   }
 
   return /*#__PURE__*/ React.createElement(Switches, {
-    zoneKeys: queryInfo.zoneKeys,
+    zones: queryInfo.zones,
   });
 }
