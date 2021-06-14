@@ -30,6 +30,23 @@ function loadScript(src) {
   });
 }
 
+const ZONE_KEY_REGEX = /^zone_[1-8]$/;
+
+function validateQuery(query) {
+  const keys = Object.keys(query);
+  const zoneKeys = keys.filter((key) => ZONE_KEY_REGEX.test(key));
+
+  if (zoneKeys.length === 0) {
+    return {
+      error: "Zones are missing.",
+    };
+  }
+
+  return {
+    zoneKeys,
+  };
+}
+
 (async () => {
   await Promise.all([
     loadScript("https://unpkg.com/react@17.0.2/umd/react.production.min.js"),
@@ -39,10 +56,13 @@ function loadScript(src) {
   ]);
   const params = new URLSearchParams(window.location.search);
   const query = Object.fromEntries(params.entries());
-  console.log("Query:", query);
+  const queryInfo = validateQuery(query);
+  console.log({
+    queryInfo,
+  });
   ReactDOM.render(
     /*#__PURE__*/ React.createElement(App, {
-      query: query,
+      queryInfo: queryInfo,
     }),
     document.getElementById("root")
   );
@@ -72,13 +92,13 @@ const STATUS = {
   OFF: "OFF",
 };
 
-function App({ query }) {
+function Switches({ zoneKeys }) {
   const [switches, setSwitches] = React.useState(() => {
     const initialState = {};
 
-    for (const key in query) {
+    for (const key in zoneKeys) {
       initialState[key] = {
-        name: query[key],
+        name: zoneKeys[key],
         status: STATUS.WAITING_FOR_SIGNAL,
       };
     }
@@ -174,4 +194,20 @@ function App({ query }) {
       )
     )
   );
+}
+
+function App({ queryInfo }) {
+  if (queryInfo.error) {
+    return /*#__PURE__*/ React.createElement(
+      "p",
+      {
+        className: "error",
+      },
+      queryInfo.error
+    );
+  }
+
+  return /*#__PURE__*/ React.createElement(Switches, {
+    zoneKeys: queryInfo.zoneKeys,
+  });
 }
