@@ -41,6 +41,24 @@ function loadScript(src) {
   );
 })();
 
+function cx(...args) {
+  return args
+    .reduce((acc, arg) => {
+      if (typeof arg === "string") {
+        acc.push(arg);
+      } else if (typeof arg === "object") {
+        for (const key in arg) {
+          if (arg[key] === true) {
+            acc.push(key);
+          }
+        }
+      }
+
+      return acc;
+    }, [])
+    .join(" ");
+}
+
 const STATUS = {
   WAITING_FOR_SIGNAL: "WAITING_FOR_SIGNAL",
   ON: "ON",
@@ -98,22 +116,49 @@ function App({ query }) {
   }, []);
   return /*#__PURE__*/ React.createElement(
     "ul",
-    null,
+    {
+      className: "switches-container",
+    },
     Object.keys(switches).map((id) =>
       /*#__PURE__*/ React.createElement(
         "li",
         {
           key: id,
         },
-        `${switches[id].name} [${
-          switches[id].status === STATUS.WAITING_FOR_SIGNAL
-            ? "Waiting for signal"
-            : switches[id].status === STATUS.ON
-            ? "On"
-            : switches[id].status === STATUS.OFF
-            ? "Off"
-            : ""
-        }]`
+        /*#__PURE__*/ React.createElement(
+          "button",
+          {
+            className: cx("switch-button", {
+              "switch-button-on": switches[id].status === STATUS.ON,
+              "switch-button-off": switches[id].status === STATUS.OFF,
+            }),
+            type: "button",
+            disabled: switches[id].status === STATUS.WAITING_FOR_SIGNAL,
+          },
+          /*#__PURE__*/ React.createElement(
+            "span",
+            {
+              className: "switch-name",
+            },
+            switches[id].name
+          ),
+          /*#__PURE__*/ React.createElement(
+            "span",
+            {
+              className: cx("switch-status", {
+                "switch-status-on": switches[id].status === STATUS.ON,
+                "switch-status-off": switches[id].status === STATUS.OFF,
+              }),
+            },
+            switches[id].status === STATUS.WAITING_FOR_SIGNAL
+              ? "Waiting for signal"
+              : switches[id].status === STATUS.ON
+              ? "On"
+              : switches[id].status === STATUS.OFF
+              ? "Off"
+              : ""
+          )
+        )
       )
     )
   );
