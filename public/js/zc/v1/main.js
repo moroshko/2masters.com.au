@@ -163,11 +163,21 @@ function Switches({ zones }) {
     };
   }, []);
 
+  if (eventSourceState === EventSource.CONNECTING) {
+    return /*#__PURE__*/ React.createElement(
+      "p",
+      {
+        className: "message",
+      },
+      "Connecting..."
+    );
+  }
+
   if (eventSourceState === EventSource.CLOSED) {
     return /*#__PURE__*/ React.createElement(
       "p",
       {
-        className: "error",
+        className: "message",
       },
       "Disconnected"
     );
@@ -233,7 +243,7 @@ function App({ queryInfo }) {
     return /*#__PURE__*/ React.createElement(
       "p",
       {
-        className: "error",
+        className: "message",
       },
       queryInfo.error
     );

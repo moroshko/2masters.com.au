@@ -10,7 +10,7 @@ body {
 article.markdown-body {
   display: none;
 }
-.error {
+.message {
   margin: 20px auto 0;
   width: calc(var(--button-size) + var(--buttons-gap) + var(--button-size));
 }
