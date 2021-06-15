@@ -39,6 +39,9 @@ article.markdown-body {
   user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
+.switch-button:active {
+  color: inherit; /* Needed for Safari */
+}
 .switch-button:disabled {
   color: inherit;
   cursor: not-allowed;

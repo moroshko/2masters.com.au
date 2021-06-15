@@ -53,6 +53,10 @@ function validateQuery(query) {
   };
 }
 
+function log(...args) {
+  console.log(`[${new Date().toLocaleTimeString()}]`, ...args);
+}
+
 (async () => {
   await Promise.all([
     loadScript("https://unpkg.com/react@17.0.2/umd/react.production.min.js"),
@@ -63,7 +67,7 @@ function validateQuery(query) {
   const params = new URLSearchParams(window.location.search);
   const query = Object.fromEntries(params.entries());
   const queryInfo = validateQuery(query);
-  console.log({
+  log({
     queryInfo,
   });
   ReactDOM.render(
@@ -114,7 +118,7 @@ function Switches({ zones }) {
 
     return initialState;
   });
-  console.log(
+  log(
     JSON.stringify(
       {
         eventSourceState,
@@ -129,14 +133,12 @@ function Switches({ zones }) {
 
     eventSource.onopen = () => {
       setEventSourceState(eventSource.readyState);
-      console.log(
-        `Connected successfully, readyState = ${eventSource.readyState}`
-      );
+      log(`Connected successfully, readyState = ${eventSource.readyState}`);
     };
 
     eventSource.onerror = () => {
       setEventSourceState(eventSource.readyState);
-      console.log(`Failed to connect, readyState = ${eventSource.readyState}`);
+      log(`Failed to connect, readyState = ${eventSource.readyState}`);
     };
 
     function handleStateMessage(event) {
@@ -152,7 +154,7 @@ function Switches({ zones }) {
           },
         }));
       } else {
-        console.log(`${id} is not defined but sending data:`, data);
+        log(`${id} is not defined but sending data:`, data);
       }
     }
 
