@@ -12,6 +12,24 @@ export const validateRequired: Validate<string> = (str) => {
   }
 };
 
+const AMOUNT_REGEX = /^\d+(\.\d{2})?$/;
+
+export const validateAmount: Validate<string> = (str) => {
+  if (str.trim() === "") {
+    return "Required";
+  }
+
+  if (AMOUNT_REGEX.test(str.trim()) === false) {
+    return "Invalid amount";
+  }
+
+  const amount = Number(str);
+
+  if (amount < 1) {
+    return "Must be at least $1";
+  }
+};
+
 export const validateMobileNumber: Validate<string> = (mobile) => {
   if (mobile.trim() === "") {
     return "Required";

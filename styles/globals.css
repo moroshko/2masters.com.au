@@ -118,6 +118,12 @@ form {
 .field > textarea:disabled {
   background-color: var(--grey-100);
 }
+.help-text {
+  margin: 4px 0 0;
+  font-size: var(--font-size-1);
+  line-height: var(--line-height-1);
+  color: var(--grey-500);
+}
 @media (max-width: 959px) {
   .mobile-menu-open {
     overflow: hidden;

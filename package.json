@@ -22,15 +22,18 @@
     "react-dom": "17.0.2",
     "react-facebook": "8.1.4",
     "react-google-recaptcha": "2.1.0",
-    "react-hook-form": "7.6.9",
+    "react-hook-form": "7.38.0",
     "react-query": "3.16.0",
     "react-select": "4.3.1",
-    "react-square-web-payments-sdk": "3.2.1"
+    "react-square-web-payments-sdk": "3.2.1",
+    "square": "22.0.0",
+    "uuid": "9.0.0"
   },
   "devDependencies": {
     "@types/react": "17.0.8",
     "@types/react-google-recaptcha": "2.1.0",
     "@types/react-select": "4.0.15",
+    "@types/uuid": "8.3.4",
     "@typescript-eslint/eslint-plugin": "4.26.0",
     "@typescript-eslint/parser": "4.26.0",
     "cypress": "7.4.0",

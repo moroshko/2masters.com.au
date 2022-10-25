@@ -2,4 +2,20 @@
   margin-block: 40px;
   margin-inline: auto;
   max-width: 600px;
+  min-height: 620px;
+}
+.form {
+  margin-bottom: 12px;
+}
+.recaptchaField {
+  margin-top: 20px;
+}
+.paidSuccessfully {
+  text-align: center;
+}
+.formError {
+  font-size: var(--font-size-1);
+  line-height: var(--line-height-1);
+  color: var(--red);
+  min-height: 32px;
 }
