@@ -3,6 +3,7 @@
   margin-inline: auto;
   max-width: 600px;
   min-height: 620px;
+  padding-inline: 16px;
 }
 .form {
   margin-bottom: 12px;
