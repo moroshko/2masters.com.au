@@ -73,6 +73,7 @@ function Pay() {
               <input
                 id="amount"
                 placeholder="e.g. 500.00"
+                inputMode="decimal"
                 aria-describedby="amount-error"
                 {...register("amount", { validate: validateAmount })}
               />
