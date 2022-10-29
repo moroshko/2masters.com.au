@@ -47,7 +47,7 @@ function Pay() {
   const payMutation = useMutation<SuccessResponse, ErrorResponse, FormValues>(
     (data) => post("/api/pay", data)
   );
-  const [isPaidSuccessfully, setIsPaidSuccessfully] = useState(true);
+  const [isPaidSuccessfully, setIsPaidSuccessfully] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
   const recaptchaRef = useRef<ReCAPTCHA>(null); // See: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/35572#issuecomment-498242139
 
@@ -57,7 +57,7 @@ function Pay() {
         <div className={styles.paidSuccessfully}>
           <h3>Thank you for your business!</h3>
           <p>
-            Please leave us a{" "}
+            {`Please leave us a `}
             <ExtrnalLink href="https://g.page/r/CTaYV2vFNh2SEB0/review">
               Google review.
             </ExtrnalLink>
@@ -155,6 +155,7 @@ function Pay() {
                     {
                       onSuccess: () => {
                         setIsPaidSuccessfully(true);
+                        window.scrollTo(0, 0);
                       },
                       onError: ({ fieldErrors, formError }) => {
                         fieldErrors?.forEach(({ name, error }) => {
