@@ -6,6 +6,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { post } from "../utils/api";
 import { SuccessResponse, ErrorResponse, FormValues } from "./api/pay";
 import { useForm } from "react-hook-form";
+import { SquareLogo } from "../components/SquareLogo";
 import styles from "../styles/Pay.module.css";
 import { squareApplicationId, squareLocationId } from "../utils/square";
 import { validateAmount, validateRequired } from "../utils/validation";
@@ -57,7 +58,7 @@ function Pay() {
         <>
           <form className={styles.form} method="post" noValidate>
             <div className="field">
-              <label htmlFor="invoice-number">Invoice number</label>
+              <label htmlFor="invoice-number">Invoice/Quote number</label>
               <input
                 id="invoice-number"
                 placeholder="e.g. 12345"
@@ -193,7 +194,13 @@ function Pay() {
           >
             <CreditCard />
           </PaymentForm>
-          <p className={styles.formError}>{formError}</p>
+          {formError && <p className={styles.formError}>{formError}</p>}
+          <div className={styles.detailsNotStored}>
+            <p>We never store your credit card details.</p>
+            <p className={styles.securedBySquare}>
+              Secured by <SquareLogo height={16} />
+            </p>
+          </div>
         </>
       )}
     </div>

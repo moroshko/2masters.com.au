@@ -20,3 +20,15 @@
   color: var(--red);
   min-height: 32px;
 }
+.detailsNotStored {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--font-size-1);
+  line-height: var(--line-height-1);
+}
+.securedBySquare {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}

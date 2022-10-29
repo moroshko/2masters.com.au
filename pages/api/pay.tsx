@@ -119,7 +119,7 @@ export default async (
       subject: "Credit card payment received",
       html: renderToStaticMarkup(
         <div>
-          <p>{`Invoice number: ${invoiceNumber}`}</p>
+          <p>{`Invoice/Quote number: ${invoiceNumber}`}</p>
           <p>
             {`Amount including credit card surcharge of 2.2%: $${
               amountInCents / 100
