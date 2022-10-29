@@ -11,6 +11,7 @@ import styles from "../styles/Pay.module.css";
 import { squareApplicationId, squareLocationId } from "../utils/square";
 import { validateAmount, validateRequired } from "../utils/validation";
 import ReCaptcha from "../components/ReCaptcha";
+import ExtrnalLink from "../components/ExternalLink";
 
 const creditCardSurcharge = 2.2; // %
 
@@ -46,14 +47,22 @@ function Pay() {
   const payMutation = useMutation<SuccessResponse, ErrorResponse, FormValues>(
     (data) => post("/api/pay", data)
   );
-  const [isPaidSuccessfully, setIsPaidSuccessfully] = useState(false);
+  const [isPaidSuccessfully, setIsPaidSuccessfully] = useState(true);
   const [formError, setFormError] = useState<string | null>(null);
   const recaptchaRef = useRef<ReCAPTCHA>(null); // See: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/35572#issuecomment-498242139
 
   return (
     <div className={styles.container}>
       {isPaidSuccessfully ? (
-        <h3 className={styles.paidSuccessfully}>Paid successfully!</h3>
+        <div className={styles.paidSuccessfully}>
+          <h3>Thank you for your business!</h3>
+          <p>
+            Please leave us a{" "}
+            <ExtrnalLink href="https://g.page/r/CTaYV2vFNh2SEB0/review">
+              Google review.
+            </ExtrnalLink>
+          </p>
+        </div>
       ) : (
         <>
           <form className={styles.form} method="post" noValidate>
