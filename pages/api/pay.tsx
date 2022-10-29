@@ -137,7 +137,7 @@ export default async (
   try {
     await createRecord("Pay", {
       "Invoice/Quote number": invoiceNumber,
-      Amount: String(amountInCents / 100),
+      Amount: amountInCents / 100,
       "Melbourne Time": new Date().toISOString(),
     });
   } catch (error) {
