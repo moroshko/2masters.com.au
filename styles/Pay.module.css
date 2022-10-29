@@ -21,6 +21,8 @@
   min-height: 32px;
 }
 .detailsNotStored {
+  margin-top: 24px;
+  text-align: center;
   font-size: var(--font-size-1);
   line-height: var(--line-height-1);
 }
@@ -28,9 +30,11 @@
   display: flex;
   gap: 8px;
   align-items: center;
+  justify-content: center;
 }
 @media (min-width: 480px) {
   .detailsNotStored {
+    margin-top: 0px;
     display: flex;
     align-items: center;
     justify-content: space-between;
