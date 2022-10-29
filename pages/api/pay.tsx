@@ -4,6 +4,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { v4 as uuidv4 } from "uuid";
 import { sendEmail } from "../../utils/mailgun";
 import { squareLocationId } from "../../utils/square";
+import { createRecord } from "../../utils/airtable";
 
 const squareClient = new Client({
   environment: Environment.Production,
@@ -130,6 +131,17 @@ export default async (
     });
   } catch (error) {
     return res.status(400).json({ formError: error.message });
+  }
+
+  // Add record to Airtable
+  try {
+    await createRecord("Pay", {
+      "Invoice/Quote number": invoiceNumber,
+      Amount: String(amountInCents / 100),
+      "Melbourne Time": new Date().toISOString(),
+    });
+  } catch (error) {
+    return res.status(400).json({ formError: "Something went wrong." });
   }
 
   res.status(200).json({ message: "OK" });
