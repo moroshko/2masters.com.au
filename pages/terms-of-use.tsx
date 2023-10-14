@@ -33,9 +33,7 @@ function TermsOfUse() {
         applicable) contain your correct name, address and other requested
         details. For more information about how we deal with your personal
         information, please read our `}
-        <Link href="/privacy-policy">
-          <a>privacy policy</a>
-        </Link>
+        <Link href="/privacy-policy">privacy policy</Link>
         {` on this website.`}
       </p>
       <H2>Applicability of Online Materials</H2>
@@ -117,10 +115,7 @@ function TermsOfUse() {
         privacy very seriously and it is important to us that you can use and
         enjoy our website without having to compromise your privacy in any way.
         For more information, please see our `}
-        <Link href="/privacy-policy">
-          <a>privacy policy</a>
-        </Link>
-        .
+        <Link href="/privacy-policy">privacy policy</Link>.
       </p>
     </main>
   );

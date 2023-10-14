@@ -1,7 +1,11 @@
 import { useRef, useState } from "react";
 import { useMutation } from "react-query";
 import cx from "classnames";
-import { CreditCard, PaymentForm } from "react-square-web-payments-sdk";
+import {
+  CreditCard,
+  PaymentForm,
+  GooglePay,
+} from "react-square-web-payments-sdk";
 import ReCAPTCHA from "react-google-recaptcha";
 import { post } from "../utils/api";
 import { SuccessResponse, ErrorResponse, FormValues } from "./api/pay";
@@ -50,6 +54,8 @@ function Pay() {
   const [isPaidSuccessfully, setIsPaidSuccessfully] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
   const recaptchaRef = useRef<ReCAPTCHA>(null); // See: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/35572#issuecomment-498242139
+  const [paymentMethod, setPaymentMethod] =
+    useState<"credit-card" | "gpay" | null>(null);
 
   return (
     <div className={styles.container}>
@@ -99,7 +105,7 @@ function Pay() {
                 aria-describedby="total-amount"
                 value={totalAmount}
               />
-              <p className="help-text">{`Including credit card surcharge of 2.2%${
+              <p className="help-text">{`Including surcharge of 2.2%${
                 amountNum !== null && totalAmountNum !== null
                   ? ` ($${(totalAmountNum - amountNum).toFixed(2)})`
                   : ""
@@ -122,95 +128,153 @@ function Pay() {
               </div>
             </div>
           </form>
-          <PaymentForm
-            /**
-             * Identifies the calling form with a verified application ID generated from
-             * the Square Application Dashboard.
-             */
-            applicationId={squareApplicationId}
-            /**
-             * Identifies the location of the merchant that is taking the payment.
-             * Obtained from the Square Application Dashboard - Locations tab.
-             */
-            locationId={squareLocationId}
-            /**
-             * Invoked when payment form receives the result of a tokenize generation
-             * request. The result will be a valid credit card or wallet token, or an error.
-             */
-            cardTokenizeResponseReceived={async (token, buyer) => {
-              if (token.status === "OK") {
-                const validationResult = await trigger();
+          {totalAmountNum !== null && (
+            <div className="space-y-8">
+              <div>
+                <label className="font-semibold text-gray-700">Pay by</label>
+                <div className="flex gap-4">
+                  <button
+                    className={cx(
+                      "grow border border-gray-700 py-2 rounded",
+                      paymentMethod === "credit-card" && "bg-blue-200"
+                    )}
+                    type="button"
+                    onClick={() => {
+                      setPaymentMethod("credit-card");
+                    }}
+                  >
+                    Credit card
+                  </button>
+                  <button
+                    className={cx(
+                      "grow border border-gray-700 py-2 rounded",
+                      paymentMethod === "gpay" && "bg-blue-200"
+                    )}
+                    type="button"
+                    onClick={() => {
+                      setPaymentMethod("gpay");
+                    }}
+                  >
+                    Google Pay
+                  </button>
+                </div>
+              </div>
+              {paymentMethod !== null && (
+                <div>
+                  <PaymentForm
+                    /**
+                     * Identifies the calling form with a verified application ID generated from
+                     * the Square Application Dashboard.
+                     */
+                    applicationId={squareApplicationId}
+                    /**
+                     * Identifies the location of the merchant that is taking the payment.
+                     * Obtained from the Square Application Dashboard - Locations tab.
+                     */
+                    locationId={squareLocationId}
+                    /**
+                     * Invoked when payment form receives the result of a tokenize generation
+                     * request. The result will be a valid credit card or wallet token, or an error.
+                     */
+                    cardTokenizeResponseReceived={async (token, buyer) => {
+                      if (token.status === "OK") {
+                        const validationResult = await trigger();
 
-                if (validationResult === true && totalAmountNum !== null) {
-                  setFormError(null);
+                        if (
+                          validationResult === true &&
+                          totalAmountNum !== null
+                        ) {
+                          setFormError(null);
 
-                  payMutation.mutate(
-                    {
-                      verificationToken: buyer?.token ?? "",
-                      sourceId: token.token ?? "",
-                      invoiceNumber: getValues("invoiceNumber"),
-                      amountInCents: totalAmountNum * 100,
-                      recaptchaToken: getValues("recaptchaToken"),
-                    },
-                    {
-                      onSuccess: () => {
-                        setIsPaidSuccessfully(true);
-                        window.scrollTo(0, 0);
-                      },
-                      onError: ({ fieldErrors, formError }) => {
-                        fieldErrors?.forEach(({ name, error }) => {
-                          setError(name, { type: "manual", message: error });
-                        });
+                          payMutation.mutate(
+                            {
+                              verificationToken: buyer?.token ?? "",
+                              sourceId: token.token ?? "",
+                              invoiceNumber: getValues("invoiceNumber"),
+                              amountInCents: totalAmountNum * 100,
+                              recaptchaToken: getValues("recaptchaToken"),
+                            },
+                            {
+                              onSuccess: () => {
+                                setIsPaidSuccessfully(true);
+                                window.scrollTo(0, 0);
+                              },
+                              onError: ({ fieldErrors, formError }) => {
+                                fieldErrors?.forEach(({ name, error }) => {
+                                  setError(name, {
+                                    type: "manual",
+                                    message: error,
+                                  });
+                                });
 
-                        if (formError) {
-                          setFormError(
-                            formError.includes("GENERIC_DECLINE")
-                              ? "Please check the card details."
-                              : formError
+                                if (formError) {
+                                  setFormError(
+                                    formError.includes("GENERIC_DECLINE")
+                                      ? "Please check the card details."
+                                      : formError
+                                  );
+                                }
+
+                                if (watch("recaptchaToken") !== null) {
+                                  recaptchaRef.current?.reset();
+                                  setValue("recaptchaToken", null);
+                                }
+                              },
+                            }
                           );
                         }
-
-                        if (watch("recaptchaToken") !== null) {
-                          recaptchaRef.current?.reset();
-                          setValue("recaptchaToken", null);
-                        }
+                      } else {
+                        alert("Failed to generate a payment token");
+                      }
+                    }}
+                    /**
+                     * This function enable the Strong Customer Authentication (SCA) flow
+                     *
+                     * We strongly recommend use this function to verify the buyer and reduce
+                     * the chance of fraudulent transactions.
+                     */
+                    // createVerificationDetails={() => ({
+                    //   amount: 120,
+                    //   /* collected from the buyer */
+                    //   billingContact: {
+                    //     //addressLines: ["123 Main Street", "Apartment 1"],
+                    //     // familyName: "Misha",
+                    //     // givenName: "Moroshko",
+                    //     countryCode: "AU",
+                    //     //city: "London",
+                    //   },
+                    //   currencyCode: "AUD",
+                    //   intent: "CHARGE",
+                    // })}
+                    createPaymentRequest={() => ({
+                      countryCode: "AU",
+                      currencyCode: "AUD",
+                      // requestBillingContact: false,
+                      // requestShippingContact: false,
+                      // pending is only required if it's true.
+                      total: {
+                        amount: String(totalAmountNum),
+                        label: "Total",
                       },
-                    }
-                  );
-                }
-              } else {
-                alert("Failed to generate a payment token");
-              }
-            }}
-            /**
-             * This function enable the Strong Customer Authentication (SCA) flow
-             *
-             * We strongly recommend use this function to verify the buyer and reduce
-             * the chance of fraudulent transactions.
-             */
-            // createVerificationDetails={() => ({
-            //   amount: 120,
-            //   /* collected from the buyer */
-            //   billingContact: {
-            //     //addressLines: ["123 Main Street", "Apartment 1"],
-            //     // familyName: "Misha",
-            //     // givenName: "Moroshko",
-            //     countryCode: "AU",
-            //     //city: "London",
-            //   },
-            //   currencyCode: "AUD",
-            //   intent: "CHARGE",
-            // })}
-          >
-            <CreditCard />
-          </PaymentForm>
-          {formError && <p className={styles.formError}>{formError}</p>}
-          <div className={styles.detailsNotStored}>
-            <p>We never store your credit card details.</p>
-            <p className={styles.securedBySquare}>
-              Secured by <SquareLogo height={16} />
-            </p>
-          </div>
+                    })}
+                  >
+                    {paymentMethod === "credit-card" ? (
+                      <CreditCard />
+                    ) : (
+                      <GooglePay />
+                    )}
+                  </PaymentForm>
+                  {formError && <p className={styles.formError}>{formError}</p>}
+                  <div className={styles.detailsNotStored}>
+                    <p>We never store your credit card details.</p>
+                    <p className={styles.securedBySquare}>
+                      Secured by <SquareLogo height={16} />
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
         </>
       )}
     </div>

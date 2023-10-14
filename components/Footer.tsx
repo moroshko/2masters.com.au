@@ -15,15 +15,11 @@ export default function Footer() {
           <span className={styles.separator} aria-hidden="true">
             •
           </span>
-          <Link href="/privacy-policy">
-            <a>Privacy policy</a>
-          </Link>
+          <Link href="/privacy-policy">Privacy policy</Link>
           <span className={styles.separator} aria-hidden="true">
             •
           </span>
-          <Link href="/terms-of-use">
-            <a>Terms of use</a>
-          </Link>
+          <Link href="/terms-of-use">Terms of use</Link>
           <span className={styles.separator} aria-hidden="true">
             •
           </span>

@@ -149,15 +149,14 @@ export default function Header({ pageTitle, pageDescription }: Props) {
                 {isCurrent ? (
                   <span className={styles.navItemCurrentText}>{text}</span>
                 ) : (
-                  <Link href={href}>
-                    <a
-                      className={styles.navItemLink}
-                      onClick={() => {
-                        trackEvent(`Nav ${text} link clicked`);
-                      }}
-                    >
-                      {text}
-                    </a>
+                  <Link
+                    href={href}
+                    className={styles.navItemLink}
+                    onClick={() => {
+                      trackEvent(`Nav ${text} link clicked`);
+                    }}
+                  >
+                    {text}
                   </Link>
                 )}
               </li>
