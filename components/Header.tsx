@@ -122,6 +122,7 @@ export default function Header({ pageTitle, pageDescription }: Props) {
           })}
         >
           <Image
+            className="mx-auto"
             src="/images/header-banner.png"
             alt="2 Masters, phone: 0395155327, email: info@2masters.com.au"
             width={960}
