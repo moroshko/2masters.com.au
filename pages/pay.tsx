@@ -5,6 +5,7 @@ import {
   CreditCard,
   PaymentForm,
   GooglePay,
+  ApplePay,
 } from "react-square-web-payments-sdk";
 import ReCAPTCHA from "react-google-recaptcha";
 import { post } from "../utils/api";
@@ -55,7 +56,7 @@ function Pay() {
   const [formError, setFormError] = useState<string | null>(null);
   const recaptchaRef = useRef<ReCAPTCHA>(null); // See: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/35572#issuecomment-498242139
   const [paymentMethod, setPaymentMethod] =
-    useState<"credit-card" | "gpay" | null>(null);
+    useState<"credit-card" | "gpay" | "applepay" | null>(null);
 
   return (
     <div className={styles.container}>
@@ -156,6 +157,18 @@ function Pay() {
                     }}
                   >
                     Google Pay
+                  </button>
+                  <button
+                    className={cx(
+                      "grow border border-gray-700 py-2 rounded",
+                      paymentMethod === "applepay" && "bg-blue-200"
+                    )}
+                    type="button"
+                    onClick={() => {
+                      setPaymentMethod("applepay");
+                    }}
+                  >
+                    Apple Pay
                   </button>
                 </div>
               </div>
@@ -260,6 +273,8 @@ function Pay() {
                   >
                     {paymentMethod === "credit-card" ? (
                       <CreditCard />
+                    ) : paymentMethod === "applepay" ? (
+                      <ApplePay />
                     ) : (
                       <GooglePay />
                     )}
