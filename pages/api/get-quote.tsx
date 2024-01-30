@@ -186,7 +186,8 @@ export default async (
     });
   } catch (error) {
     return res.status(400).json({
-      submitError: error instanceof Error ? error.message : "Unknown error",
+      submitError:
+        error instanceof Error ? error.message : "Something went wrong",
     });
   }
 
@@ -206,7 +207,8 @@ export default async (
     res.status(200).json({ message: "Thanks! You'll hear from us soon." });
   } catch (error) {
     return res.status(400).json({
-      submitError: error instanceof Error ? error.message : "Unknown error",
+      submitError:
+        error instanceof Error ? error.message : "Something went wrong",
     });
   }
 };

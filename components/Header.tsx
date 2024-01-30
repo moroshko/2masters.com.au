@@ -122,6 +122,7 @@ export default function Header({ pageTitle, pageDescription }: Props) {
           })}
         >
           <Image
+            className="mx-auto"
             src="/images/header-banner.png"
             alt="2 Masters, phone: 0395155327, email: info@2masters.com.au"
             width={960}
@@ -150,8 +151,8 @@ export default function Header({ pageTitle, pageDescription }: Props) {
                   <span className={styles.navItemCurrentText}>{text}</span>
                 ) : (
                   <Link
-                    className={styles.navItemLink}
                     href={href}
+                    className={styles.navItemLink}
                     onClick={() => {
                       trackEvent(`Nav ${text} link clicked`);
                     }}

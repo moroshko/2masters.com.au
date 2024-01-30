@@ -131,7 +131,8 @@ export default async (
     });
   } catch (error) {
     return res.status(400).json({
-      formError: error instanceof Error ? error.message : "Unknown error",
+      formError:
+        error instanceof Error ? error.message : "Something went wrong",
     });
   }
 
