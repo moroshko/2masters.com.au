@@ -32,6 +32,17 @@
   align-items: center;
   justify-content: center;
 }
+.paymentForm {
+  position: relative;
+}
+.submittingOverlay {
+  position: absolute;
+  inset: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  display: grid;
+  place-items: center;
+}
 @media (min-width: 480px) {
   .detailsNotStored {
     margin-top: 0px;

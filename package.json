@@ -6,6 +6,7 @@
     "build": "next build",
     "start": "next start",
     "prepare": "husky install",
+    "tsc": "tsc",
     "lint": "eslint . --ext ts --ext tsx --ext js"
   },
   "lint-staged": {
@@ -15,38 +16,38 @@
     ]
   },
   "dependencies": {
-    "airtable": "0.11.1",
-    "classnames": "2.3.1",
-    "next": "10.2.3",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "airtable": "0.12.2",
+    "classnames": "2.5.1",
+    "next": "14.1.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "react-facebook": "8.1.4",
     "react-google-recaptcha": "2.1.0",
-    "react-hook-form": "7.38.0",
-    "react-query": "3.16.0",
+    "react-hook-form": "7.49.3",
+    "react-query": "3.39.3",
     "react-select": "4.3.1",
     "react-square-web-payments-sdk": "3.2.1",
     "square": "22.0.0",
-    "uuid": "9.0.0"
+    "uuid": "9.0.1"
   },
   "devDependencies": {
-    "@types/react": "17.0.8",
-    "@types/react-google-recaptcha": "2.1.0",
+    "@types/react": "18.2.48",
+    "@types/react-google-recaptcha": "2.1.9",
     "@types/react-select": "4.0.15",
     "@types/uuid": "8.3.4",
-    "@typescript-eslint/eslint-plugin": "4.26.0",
-    "@typescript-eslint/parser": "4.26.0",
+    "@typescript-eslint/eslint-plugin": "6.20.0",
+    "@typescript-eslint/parser": "6.20.0",
     "cypress": "7.4.0",
-    "eslint": "7.27.0",
-    "eslint-config-prettier": "8.3.0",
-    "eslint-plugin-react": "7.24.0",
+    "eslint": "8.56.0",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-react": "7.33.2",
     "husky": "6.0.0",
     "lint-staged": "11.0.0",
     "prettier": "2.3.0",
-    "typescript": "4.3.2"
+    "typescript": "5.3.3"
   },
   "engines": {
-    "node": "18.x"
+    "node": "20.x"
   },
   "private": true
 }

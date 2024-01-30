@@ -1,12 +1,10 @@
-import { Validate } from "react-hook-form";
-
 const MOBILE_NUMBER_REGEX = /^\d{10}$/;
 
 // Source: https://emailregex.com
 const EMAIL_REGEX =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-export const validateRequired: Validate<string> = (str) => {
+export const validateRequired = (str: string) => {
   if (str.trim() === "") {
     return "Required";
   }
@@ -14,7 +12,7 @@ export const validateRequired: Validate<string> = (str) => {
 
 const AMOUNT_REGEX = /^\d+(\.\d{2})?$/;
 
-export const validateAmount: Validate<string> = (str) => {
+export const validateAmount = (str: string) => {
   if (str.trim() === "") {
     return "Required";
   }
@@ -30,7 +28,7 @@ export const validateAmount: Validate<string> = (str) => {
   }
 };
 
-export const validateMobileNumber: Validate<string> = (mobile) => {
+export const validateMobileNumber = (mobile: string) => {
   if (mobile.trim() === "") {
     return "Required";
   }
@@ -40,7 +38,7 @@ export const validateMobileNumber: Validate<string> = (mobile) => {
   }
 };
 
-export const validateEmail: Validate<string> = (email) => {
+export const validateEmail = (email: string) => {
   if (email.trim() === "") {
     return "Required";
   }
@@ -50,7 +48,7 @@ export const validateEmail: Validate<string> = (email) => {
   }
 };
 
-export const validateReCaptchaToken: Validate<string | null> = (token) => {
+export const validateReCaptchaToken = (token: string | null) => {
   if (token === null) {
     return "Must be checked";
   }

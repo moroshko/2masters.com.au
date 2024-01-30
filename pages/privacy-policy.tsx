@@ -116,10 +116,7 @@ function PrivacyPolicy() {
         sites, we will take these issues seriously and work to address these
         concerns. If you have any further queries relating to our Privacy
         Policy, or you have a problem or complaint, please `}
-        <Link href="/contact-us">
-          <a>contact us</a>
-        </Link>
-        .
+        <Link href="/contact-us">contact us</Link>.
       </p>
       <H2>Further Privacy Information</H2>
       <p>

@@ -185,7 +185,9 @@ export default async (
       ),
     });
   } catch (error) {
-    return res.status(400).json({ submitError: error.message });
+    return res.status(400).json({
+      submitError: error instanceof Error ? error.message : "Unknown error",
+    });
   }
 
   // Add record to Airtable
@@ -203,6 +205,8 @@ export default async (
 
     res.status(200).json({ message: "Thanks! You'll hear from us soon." });
   } catch (error) {
-    return res.status(400).json({ submitError: error.message });
+    return res.status(400).json({
+      submitError: error instanceof Error ? error.message : "Unknown error",
+    });
   }
 };

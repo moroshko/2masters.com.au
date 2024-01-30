@@ -130,7 +130,9 @@ export default async (
       ),
     });
   } catch (error) {
-    return res.status(400).json({ formError: error.message });
+    return res.status(400).json({
+      formError: error instanceof Error ? error.message : "Unknown error",
+    });
   }
 
   // Add record to Airtable
