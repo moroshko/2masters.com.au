@@ -1,4 +1,5 @@
 import "../styles/globals.css"; // Must be loaded first!
+import { Analytics } from "@vercel/analytics/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { AppProps } from "next/app";
 import Header from "../components/Header";
@@ -22,6 +23,7 @@ export default function MyApp({ Component, pageProps }: Props) {
       <Header pageTitle={pageTitle} pageDescription={pageDescription} />
       <Component {...pageProps} />
       <Footer />
+      <Analytics />
     </QueryClientProvider>
   );
 }
