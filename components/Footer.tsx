@@ -30,7 +30,6 @@ export default function Footer() {
           images appearing on the site are the property of their respective
           owners.
         </p>
-        {/* @ts-expect-error Not sure how to address this. */}
         <FacebookProvider appId="2Masters">
           <Like
             href="https://www.facebook.com/2Masters"

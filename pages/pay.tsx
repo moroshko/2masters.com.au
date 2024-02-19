@@ -105,7 +105,7 @@ function Pay() {
               </div>
             </div>
             <div className="field">
-              <label htmlFor="amount">Amount</label>
+              <label htmlFor="amount">Invoice amount</label>
               <input
                 id="amount"
                 placeholder="e.g. 500.00"
@@ -118,7 +118,9 @@ function Pay() {
               </div>
             </div>
             <div className="field">
-              <label htmlFor="total-amount">Total amount</label>
+              <label htmlFor="total-amount">
+                Amount payable including surcharge
+              </label>
               <input
                 id="total-amount"
                 disabled={true}
