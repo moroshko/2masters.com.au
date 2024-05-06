@@ -69,10 +69,6 @@ export default function Header({ pageTitle, pageDescription }: Props) {
         <meta name="description" content={pageDescription} />
         <link rel="icon" href="/favicon.png" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
-        />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={pageDescription} />
         <meta property="og:type" content="website" />
