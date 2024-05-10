@@ -24,6 +24,7 @@ const PayForm = () => {
   const elements = useElements();
   const [isReady, setIsReady] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const onSubmit: FormEventHandler = async (event) => {
     event.preventDefault(); // we need this when not using react-hook-form
@@ -33,6 +34,7 @@ const PayForm = () => {
     }
 
     setIsLoading(true);
+    setErrorMessage(null);
 
     const { error } = await stripe.confirmPayment({
       elements,
@@ -47,9 +49,9 @@ const PayForm = () => {
     // be redirected to an intermediate site first to authorize the payment, then
     // redirected to the `return_url`.
     if (error.type === "card_error" || error.type === "validation_error") {
-      console.error(error.message ?? "Unexpected error");
+      setErrorMessage(error.message ?? "Unexpected error");
     } else {
-      console.error("An unexpected error occurred.");
+      setErrorMessage("An unexpected error occurred.");
     }
 
     setIsLoading(false);
@@ -71,6 +73,9 @@ const PayForm = () => {
         >
           {isLoading ? "Please wait..." : "Pay now"}
         </Button>
+      )}
+      {errorMessage !== null && (
+        <p className="text-error mt-2">{errorMessage}</p>
       )}
     </form>
   );
