@@ -31,10 +31,11 @@
     "react-query": "3.39.3",
     "react-select": "4.3.1",
     "react-square-web-payments-sdk": "3.2.1",
+    "resend": "3.2.0",
     "square": "31.0.0",
-    "stripe": "15.5.0",
+    "stripe": "15.6.0",
     "uuid": "9.0.1",
-    "vercel": "^34.1.9"
+    "vercel": "^34.1.10"
   },
   "devDependencies": {
     "@types/react": "18.3.1",

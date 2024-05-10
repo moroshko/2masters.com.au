@@ -19,13 +19,19 @@
     "jsx": "preserve",
     "noUnusedLocals": true,
     "noImplicitAny": true,
-    "incremental": true
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "types"
+    "types",
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

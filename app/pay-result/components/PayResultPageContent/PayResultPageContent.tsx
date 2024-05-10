@@ -1,12 +1,14 @@
+"use client";
+
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { PayResult } from "../components/PayResult";
+import { PayResult } from "./PayResult";
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ?? ""
 );
 
-const PayResultPage = () => {
+const PayResultPageContent = () => {
   return (
     <Elements stripe={stripePromise}>
       <PayResult />
@@ -14,7 +16,4 @@ const PayResultPage = () => {
   );
 };
 
-PayResultPage.pageTitle = "Pay result";
-PayResultPage.pageDescription = "Pay result 2 Masters";
-
-export default PayResultPage;
+export { PayResultPageContent };

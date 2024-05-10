@@ -1,15 +1,16 @@
+"use client";
+
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
-import Button from "../components/Button";
-import { PayForm } from "../components/PayForm";
-import styles from "../styles/Pay.module.css";
-import { validateAmount, validateRequired } from "../utils/validation";
-
-const creditCardSurcharge = 2; // %
+import Button from "../../../../components/Button";
+import styles from "../../../../styles/Pay.module.css";
+import { validateAmount, validateRequired } from "../../../../utils/validation";
+import { creditCardSurcharge } from "../../../lib/constants";
+import { PayForm } from "./PayForm";
 
 type FormInputs = {
   invoiceNumber: string;
@@ -24,19 +25,21 @@ const elementsAppearance = {
   theme: "stripe",
 } as const;
 
-const PayPage = () => {
+const PayPageContent = () => {
+  const searchParams = useSearchParams();
   const [clientSecret, setClientSecret] = useState<string | null>(null);
-  const router = useRouter();
   const {
     register,
     watch,
-    setValue,
     handleSubmit,
     formState: { errors },
   } = useForm<FormInputs>({
     defaultValues: {
-      invoiceNumber: "",
-      amount: "",
+      invoiceNumber:
+        searchParams?.get("invoice_number") ??
+        searchParams?.get("quote_number") ??
+        "",
+      amount: searchParams?.get("amount") ?? "",
     },
   });
   const amount = watch("amount");
@@ -78,23 +81,6 @@ const PayPage = () => {
       amount: Math.ceil(totalAmountNum * 100),
     });
   };
-
-  useEffect(() => {
-    if (router.isReady) {
-      const invoiceNumber = (router.query["invoice_number"] ??
-        router.query["quote_number"] ??
-        "") as string;
-      const amount = (router.query["amount"] ?? "") as string;
-
-      if (invoiceNumber !== "") {
-        setValue("invoiceNumber", invoiceNumber);
-      }
-
-      if (amount !== "") {
-        setValue("amount", amount);
-      }
-    }
-  }, [router.isReady]);
 
   return (
     <div className="max-w-[600px] mx-auto py-10 px-4">
@@ -173,7 +159,4 @@ const PayPage = () => {
   );
 };
 
-PayPage.pageTitle = "Pay";
-PayPage.pageDescription = "Pay 2 Masters";
-
-export default PayPage;
+export { PayPageContent };

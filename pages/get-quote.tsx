@@ -1,27 +1,26 @@
-import { useState, useEffect, useRef } from "react";
-import { useMutation } from "react-query";
-import { useForm } from "react-hook-form";
-import ReCAPTCHA from "react-google-recaptcha";
 import Image from "next/image";
-import H1 from "../components/H1";
+import { useEffect, useRef, useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
+import { useForm } from "react-hook-form";
+import { useMutation } from "react-query";
 import Button from "../components/Button";
+import H1 from "../components/H1";
 import MultiSelect, { SelectOption } from "../components/MultiSelect";
 import ReCaptcha from "../components/ReCaptcha";
-import { trackEvent } from "../components/Splitbee";
+import styles from "../styles/GetQuote.module.css";
 import { post } from "../utils/api";
 import {
-  SuccessResponse,
+  validateEmail,
+  validateMobileNumber,
+  validateReCaptchaToken,
+  validateRequired,
+} from "../utils/validation";
+import {
   ErrorResponse,
   FormValues,
   Service,
+  SuccessResponse,
 } from "./api/get-quote";
-import {
-  validateRequired,
-  validateMobileNumber,
-  validateEmail,
-  validateReCaptchaToken,
-} from "../utils/validation";
-import styles from "../styles/GetQuote.module.css";
 
 const requiredServicesOptions: SelectOption<Service>[] = [
   { value: "Heating - Supply", label: "Heating - Supply" },
@@ -57,9 +56,6 @@ function GetQuote() {
     setSubmitError(null);
 
     mutation.mutate(data, {
-      onSuccess: () => {
-        trackEvent("Get a Quote form submitted");
-      },
       onError: ({ fieldErrors, submitError }) => {
         fieldErrors?.forEach(({ name, error }) => {
           setError(name, { type: "manual", message: error });

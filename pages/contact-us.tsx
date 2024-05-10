@@ -1,21 +1,20 @@
-import { useState, useEffect, useRef } from "react";
-import { useMutation } from "react-query";
-import { useForm } from "react-hook-form";
-import ReCAPTCHA from "react-google-recaptcha";
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
+import { useForm } from "react-hook-form";
+import { useMutation } from "react-query";
+import Button from "../components/Button";
 import H1 from "../components/H1";
 import H2 from "../components/H2";
-import Button from "../components/Button";
 import ReCaptcha from "../components/ReCaptcha";
-import { trackEvent } from "../components/Splitbee";
+import styles from "../styles/ContactUs.module.css";
 import { post } from "../utils/api";
-import { SuccessResponse, ErrorResponse, FormValues } from "./api/contact-us";
 import {
-  validateRequired,
   validateEmail,
   validateReCaptchaToken,
+  validateRequired,
 } from "../utils/validation";
-import styles from "../styles/ContactUs.module.css";
+import { ErrorResponse, FormValues, SuccessResponse } from "./api/contact-us";
 
 function ContactUs() {
   const {
@@ -39,9 +38,6 @@ function ContactUs() {
     setSubmitError(null);
 
     mutation.mutate(data, {
-      onSuccess: () => {
-        trackEvent("Contact Us form submitted");
-      },
       onError: ({ fieldErrors, submitError }) => {
         fieldErrors?.forEach(({ name, error }) => {
           setError(name, { type: "manual", message: error });
