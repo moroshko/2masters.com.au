@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { Suspense } from "react";
 import { PayPageContent } from "./components/PayPageContent/PayPageContent";
 
 export const metadata: Metadata = {
@@ -7,7 +8,11 @@ export const metadata: Metadata = {
 };
 
 const PayPage = () => {
-  return <PayPageContent />;
+  return (
+    <Suspense>
+      <PayPageContent />
+    </Suspense>
+  );
 };
 
 export default PayPage;
