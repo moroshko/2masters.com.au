@@ -3,12 +3,21 @@ import {
   useElements,
   useStripe,
 } from "@stripe/react-stripe-js";
+import { StripePaymentElementOptions } from "@stripe/stripe-js";
 import { FormEventHandler, useState } from "react";
 import Button from "../../../../components/Button";
+import { StripeLogo } from "./StripeLogo";
 
-const paymentElementOptions = {
+const paymentElementOptions: StripePaymentElementOptions = {
   layout: "tabs",
-} as const;
+  fields: {
+    billingDetails: {
+      address: {
+        country: "never", // hide the country field
+      },
+    },
+  },
+};
 
 const getReturnUrl = (): string => {
   const url = new URL(window.location.href);
@@ -66,13 +75,19 @@ const PayForm = () => {
         }}
       />
       {isReady && (
-        <Button
-          type="submit"
-          disabled={isLoading || stripe === null || elements === null}
-          loading={isLoading}
-        >
-          {isLoading ? "Please wait..." : "Pay now"}
-        </Button>
+        <div className="space-y-4 flex flex-col">
+          <Button
+            type="submit"
+            disabled={isLoading || stripe === null || elements === null}
+            loading={isLoading}
+          >
+            {isLoading ? "Please wait..." : "Pay now"}
+          </Button>
+          <p className="text-xs text-gray-500 flex items-center gap-1 justify-center">
+            <span>Powered by</span>
+            <StripeLogo />
+          </p>
+        </div>
       )}
       {errorMessage !== null && (
         <p className="text-error mt-2">{errorMessage}</p>

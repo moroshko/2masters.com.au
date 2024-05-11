@@ -28,6 +28,7 @@ const elementsAppearance = {
 const PayPageContent = () => {
   const searchParams = useSearchParams();
   const [clientSecret, setClientSecret] = useState<string | null>(null);
+  const showPayForm = clientSecret !== null;
   const {
     register,
     watch,
@@ -95,6 +96,7 @@ const PayPageContent = () => {
           <input
             id="invoice-number"
             placeholder="e.g. 12345"
+            disabled={showPayForm}
             aria-describedby="invoice-number-error"
             {...register("invoiceNumber", { validate: validateRequired })}
           />
@@ -108,6 +110,7 @@ const PayPageContent = () => {
             id="amount"
             placeholder="e.g. 500.00"
             inputMode="decimal"
+            disabled={showPayForm}
             aria-describedby="amount-error"
             {...register("amount", { validate: validateAmount })}
           />
@@ -143,7 +146,7 @@ const PayPageContent = () => {
           </div>
         )}
       </form>
-      {clientSecret !== null && (
+      {showPayForm && (
         <div className="mt-8">
           <Elements
             options={{
