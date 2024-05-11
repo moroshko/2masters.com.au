@@ -12,6 +12,11 @@ export async function POST(request: Request) {
   const signature = headersList.get("stripe-signature") ?? "";
   const bodyStr = await request.text();
 
+  // eslint-disable-next-line
+  console.log(`signature = [${signature}]`);
+  // eslint-disable-next-line
+  console.log(`bodyStr = [${bodyStr}]`);
+
   let event: Stripe.Event;
 
   try {
