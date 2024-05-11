@@ -1,17 +1,12 @@
-import { NextApiRequest, NextApiResponse } from "next";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? "");
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method !== "POST") {
-    res.setHeader("Allow", "POST");
-
-    return res.status(405).end();
-  }
-
-  const invoiceNumber = req.body.invoiceNumber as string;
-  const amount = req.body.amount as number;
+export async function POST(request: Request) {
+  const { invoiceNumber, amount } = (await request.json()) as {
+    invoiceNumber: string;
+    amount: number;
+  };
 
   // Create a PaymentIntent with the order amount and currency
   const paymentIntent = await stripe.paymentIntents.create({
@@ -23,7 +18,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     },
   });
 
-  res.send({
+  return Response.json({
     clientSecret: paymentIntent.client_secret,
   });
-};
+}
