@@ -134,10 +134,11 @@ const PayPageContent = () => {
         </div>
         {createPaymentIntentMutation.isSuccess ? null : (
           <div className="mt-8 flex flex-col">
-            <Button type="submit">
-              {createPaymentIntentMutation.isLoading
-                ? "Please wait..."
-                : "Continue"}
+            <Button
+              type="submit"
+              loading={createPaymentIntentMutation.isLoading}
+            >
+              Continue
             </Button>
           </div>
         )}
