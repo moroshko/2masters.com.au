@@ -48,6 +48,13 @@ const PayForm = () => {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
+        payment_method_data: {
+          billing_details: {
+            address: {
+              country: "AU",
+            },
+          },
+        },
         return_url: getReturnUrl(),
       },
     });
