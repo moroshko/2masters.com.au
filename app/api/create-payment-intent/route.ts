@@ -11,7 +11,6 @@ export async function POST(request: Request) {
   const paymentIntent = await stripe.paymentIntents.create({
     amount: amount,
     currency: "aud",
-    payment_method_types: ["card"], // "google_pay", "apple_pay"
     metadata: {
       invoice_number: invoiceNumber,
     },
