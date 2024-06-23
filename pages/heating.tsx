@@ -17,7 +17,6 @@ function Heating() {
             <List.Item>Ducted heating</List.Item>
             <List.Item>Gas wall heaters</List.Item>
             <List.Item>Split system units</List.Item>
-            <List.Item>Hydronic systems</List.Item>
             <List.Item>
               Zoning options to reduce greenhouse gas emissions and minimise
               running costs
